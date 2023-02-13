@@ -1,7 +1,7 @@
 package main
 
 import (
-	"demo/app"
+	"demo/service"
 	"fmt"
 )
 
@@ -11,6 +11,6 @@ func main() {
 	// script.JsonConv3()
 	// script.TTY() // es 数据迁移
 	// script.ZhiHu()
-	app.SendEmail("", "", nil)
+	service.SendEmail("", "", nil)
 	fmt.Println("ALL MISSION SUCCESS !!!")
 }
