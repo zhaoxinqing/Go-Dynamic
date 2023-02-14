@@ -27,19 +27,19 @@ var emailMessage *gomail.Message
  * @Param : subject[主题]、body[内容]、emailInfo[发邮箱需要的信息(参考EmailInfo)]
  * @Return:
  */
-func SendEmail(subject, body string, emailInfo *EmailInfo) {
+func SendEmail(body string) {
 
-	emailInfo = &EmailInfo{
+	emailInfo := &EmailInfo{
 		ServerHost: "smtp.qq.com",
 		ServerPort: 465,
 
 		FromEmail:  "1375565592@qq.com",
-		FromPasswd: "sopxkavccgayigfh",
+		FromPasswd: "gyyibickelsvgdae",
 
 		Recipient: []string{"ahead_zhaoxinqing@163.com"},
 		CC:        []string{},
 	}
-	subject = "今日热点推送"
+	subject := "今日热点推送"
 	// body = time.Now().Format("2006.01.02 15:04:05") + ": 知乎热榜、微博热榜、百度热点"
 
 	emailMessage = gomail.NewMessage()
@@ -50,14 +50,14 @@ func SendEmail(subject, body string, emailInfo *EmailInfo) {
 		emailMessage.SetHeader("Cc", emailInfo.CC...)
 	}
 	// 第三个参数为发件人别名，如"dcj"，可以为空（此时则为邮箱名称）
-	emailMessage.SetAddressHeader("From", emailInfo.FromEmail, "dcj")
+	emailMessage.SetAddressHeader("From", emailInfo.FromEmail, "@LiaoWzqb")
 
 	//主题
 	emailMessage.SetHeader("Subject", subject)
 
 	//正文
-	str := ReadFile("./doc/email.html")
-	emailMessage.SetBody("text/html", str)
+	// str := ReadFile("./doc/email.html")
+	emailMessage.SetBody("text/html", body)
 
 	d := gomail.NewDialer(emailInfo.ServerHost, emailInfo.ServerPort,
 		emailInfo.FromEmail, emailInfo.FromPasswd)
