@@ -8,21 +8,19 @@ import (
 )
 
 func main() {
-	// APP
-	app.Run()
 
-	// SERVICE
-	service.Run()
+	app.Run() // APP
 
-	// snowflake
-	node, err := service.NewWorker(1)
+	service.Run() // SERVICE
+
+	node, err := service.NewWorker(1) // snowflake
 	if err != nil {
 		fmt.Println(err)
 	}
 
 	fmt.Println(node.GetId())
 
-	str1 := "In the whole world, I am the only one"
+	str1 := "IN THE WHOLE WORLD, I AM THE ONLY ONE"
 
 	fmt.Println(strings.ToLower(str1))
 	fmt.Println(strings.ToTitle(str1))
