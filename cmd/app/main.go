@@ -2,12 +2,22 @@ package main
 
 import (
 	"demo/app"
+	"demo/backend"
+	"demo/public"
 	"demo/service"
 	"fmt"
+	"log"
 	"strings"
+	"time"
 )
 
 func main() {
+
+	fmt.Printf("%s - 本地时间.\n", time.Now().Format(public.TIME_FORMAT))
+
+	time.Local = time.UTC // 全局时区设置
+
+	fmt.Printf("%s - 设置全局`UTC`时间.\n", time.Now().Format(public.TIME_FORMAT))
 
 	app.Run() // APP
 
@@ -15,15 +25,17 @@ func main() {
 
 	node, err := service.NewWorker(1) // snowflake
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 	}
 
-	fmt.Println(node.GetId())
+	log.Println(node.GetId())
 
 	str1 := "IN THE WHOLE WORLD, I AM THE ONLY ONE"
 
-	fmt.Println(strings.ToLower(str1))
-	fmt.Println(strings.ToTitle(str1))
+	log.Println(strings.ToLower(str1))
+	log.Println(strings.ToTitle(str1))
 
-	fmt.Println("ALL MISSION SUCCESS !!!")
+	log.Println("ALL MISSION SUCCESS !!!")
+
+	backend.Run(":8000")
 }

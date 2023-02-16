@@ -1,8 +1,10 @@
 package lib
 
 import (
+	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -21,9 +23,9 @@ type DBConfigs struct {
 }
 
 // InitDB ...
-func InitDB(conf *DBConfigs) (*gorm.DB, error) {
+func InitDB(conf *DBConfigs) {
 
-	conn, err := gorm.Open(mysql.Open(conf.Source), &gorm.Config{
+	tempDb, err := gorm.Open(mysql.Open(conf.Source), &gorm.Config{
 		Logger: logger.New(
 			log.New(os.Stdout, "\r\n", log.LstdFlags),
 			logger.Config{
@@ -35,11 +37,11 @@ func InitDB(conf *DBConfigs) (*gorm.DB, error) {
 		NamingStrategy: schema.NamingStrategy{SingularTable: true},
 	})
 	if err != nil {
-		return nil, err
+		panic(fmt.Sprintf("%s - MySQL 连接失败:%+v", time.Now().String(), err))
 	}
 
 	// 读写分
-	err = conn.Use(dbresolver.
+	err = tempDb.Use(dbresolver.
 		Register(dbresolver.Config{
 			Sources:  []gorm.Dialector{mysql.Open(conf.Source)},
 			Replicas: []gorm.Dialector{mysql.Open(conf.Replica1), mysql.Open(conf.Replica2)},
@@ -47,19 +49,21 @@ func InitDB(conf *DBConfigs) (*gorm.DB, error) {
 		}),
 	)
 	if err != nil {
-		return nil, err
+		panic(fmt.Sprintf("%s - MySQL 连接失败:%+v", time.Now().String(), err))
 	}
 
 	// 连接池
-	sqlDB, err := conn.DB()
+	sqlDB, err := tempDb.DB()
 	if err != nil {
-		return nil, err
+		panic(fmt.Sprintf("%s - MySQL 连接失败:%+v", time.Now().String(), err))
 	}
-
 	sqlDB.SetMaxIdleConns(100)  // SetMaxIdleConns 设置空闲连接池中连接的最大数量
-	sqlDB.SetMaxOpenConns(1000) // SetMaxOpenConns 设置打开数据库连接的最大数量。
-	sqlDB.SetConnMaxLifetime(0) // SetConnMaxLifetime 设置了连接可复用的最大时间。
-	return conn, nil
+	sqlDB.SetMaxOpenConns(100)  // SetMaxOpenConns 设置打开数据库连接的最大数量
+	sqlDB.SetConnMaxLifetime(0) // SetConnMaxLifetime 设置了连接可复用的最大时间，0永久
+
+	DB = tempDb // 全局连接
+
+	fmt.Printf("%s - MySQL 成功连接！！！", time.Now().String())
 }
 
 // var globalTimezone string
