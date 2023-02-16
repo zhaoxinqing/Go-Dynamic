@@ -1,4 +1,4 @@
-package lib
+package public
 
 import (
 	"bytes"
@@ -7,7 +7,7 @@ import (
 )
 
 // Get http get method
-func Get(url string, params map[string]string, headers map[string]string) (*http.Response, error) {
+func Get1(url string, params map[string]string, headers map[string]string) (*http.Response, error) {
 	//new request
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -31,7 +31,7 @@ func Get(url string, params map[string]string, headers map[string]string) (*http
 }
 
 // Post http post method
-func Post2(url string, body map[string]string, params map[string]string, headers map[string]string) (*http.Response, error) {
+func Post(url string, body map[string]string, params map[string]string, headers map[string]string) (*http.Response, error) {
 	var bodyJson []byte
 	var req *http.Request
 	if body != nil {

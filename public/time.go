@@ -1,4 +1,4 @@
-package lib
+package public
 
 import (
 	"database/sql/driver"
@@ -11,18 +11,18 @@ func TimeToString(time time.Time) string {
 	if time.IsZero() {
 		return ""
 	}
-	return time.Format(FormatTime)
+	return time.Format(TIME_FORMAT_S)
 }
 
 // StringToTime ...
 func StringToTime(timeStr string) time.Time {
-	time, _ := time.ParseInLocation(FormatTime, timeStr, time.UTC)
+	time, _ := time.ParseInLocation(TIME_FORMAT_S, timeStr, time.UTC)
 	return time
 }
 
 // StringToUnix ...
 func StringToUnix(timeStr string) int64 {
-	time, _ := time.ParseInLocation(FormatTime, timeStr, time.UTC)
+	time, _ := time.ParseInLocation(TIME_FORMAT_S, timeStr, time.UTC)
 	return time.Unix()
 }
 
@@ -36,17 +36,15 @@ func GetUTCFormatTime() string {
 	return time.Now().UTC().Format("2006-01-02 15:04:05")
 }
 
-var FormatTime = "2006-01-02 15:04:05"
-
 type Time time.Time
 
 // MarshalJSON ...
 func (t Time) MarshalJSON() ([]byte, error) {
 
-	b := make([]byte, 0, len(FormatTime)+2)
+	b := make([]byte, 0, len(TIME_FORMAT_S)+2)
 	b = append(b, '"')
 
-	b = time.Time(t).AppendFormat(b, FormatTime)
+	b = time.Time(t).AppendFormat(b, TIME_FORMAT_S)
 	b = append(b, '"')
 
 	return b, nil
@@ -55,7 +53,7 @@ func (t Time) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON ...
 func (t *Time) UnmarshalJSON(data []byte) (err error) {
 
-	now, err := time.ParseInLocation(`"`+FormatTime+`"`, string(data), time.Local)
+	now, err := time.ParseInLocation(`"`+TIME_FORMAT_S+`"`, string(data), time.Local)
 	*t = Time(now)
 
 	return
@@ -105,7 +103,7 @@ func (t Time) FormatMD() string {
 // String ...
 func (t Time) String() string {
 
-	return time.Time(t).Format(FormatTime)
+	return time.Time(t).Format(TIME_FORMAT_S)
 
 }
 
@@ -116,17 +114,17 @@ func (t Time) StringNotNull() string {
 		return ""
 	}
 
-	return time.Time(t).Format(FormatTime)
+	return time.Time(t).Format(TIME_FORMAT_S)
 }
 
 // StringUTC ...
 func (t Time) StringUTC() string {
 
-	return time.Time(t).UTC().Format(FormatTime)
+	return time.Time(t).UTC().Format(TIME_FORMAT_S)
 
 }
 
 func Timex() {
-	fmt.Println(time.Now().UTC().Truncate(24 * time.Hour).Format("2006-01-02 15:04:05"))
-	fmt.Println(time.Now().UTC().Truncate(24 * time.Hour).Add(24 * time.Hour).Format("2006-01-02 15:04:05"))
+	fmt.Println(time.Now().UTC().Truncate(24 * time.Hour).Format(TIME_FORMAT_S))
+	fmt.Println(time.Now().UTC().Truncate(24 * time.Hour).Add(24 * time.Hour).Format(TIME_FORMAT_S))
 }

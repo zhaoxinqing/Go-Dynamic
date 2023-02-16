@@ -1,11 +1,7 @@
-package lib
+package public
 
 import (
 	"github.com/gin-gonic/gin"
-)
-
-const (
-	TOKEN_KEY = "Authorization" // Token key
 )
 
 // PageByQuery ...
