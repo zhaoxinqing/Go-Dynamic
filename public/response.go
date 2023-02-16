@@ -39,6 +39,4 @@ func HttpResult(c *gin.Context, data interface{}, err *ErrResponseMsg) {
 			"data":    data,
 		})
 	}
-	return
-
 }
