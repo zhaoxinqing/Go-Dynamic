@@ -23,6 +23,8 @@ func Run(addr string) {
 
 	logger.Info("ALL MISSION SUCCESS !!!")
 
+	time.Sleep(10 * time.Second)
+
 	logger.Info(fmt.Sprintf("%s, 服务已启动.", addr))
 
 	engine.Run(addr)
