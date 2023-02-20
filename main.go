@@ -13,6 +13,13 @@ import (
 
 func main() {
 
+	Test()
+
+	backend.Run(":8000")
+}
+
+func Test() {
+
 	fmt.Printf("%s - 本地时间.\n", time.Now().Format(public.TIME_FORMAT))
 
 	time.Local = time.UTC // 全局时区设置
@@ -36,6 +43,4 @@ func main() {
 	log.Println(strings.ToTitle(str1))
 
 	log.Println("ALL MISSION SUCCESS !!!")
-
-	backend.Run(":8000")
 }

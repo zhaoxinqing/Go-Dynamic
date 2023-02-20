@@ -25,18 +25,11 @@ type ErrResponseMsg struct {
 }
 
 // HttpResult ...
-func HttpResult(c *gin.Context, data interface{}, err *ErrResponseMsg) {
+func HttpResult(c *gin.Context, data interface{}, err *ProtocolError) {
 	if err != nil {
-		c.JSON(http.StatusOK, gin.H{
-			"code":    err.Code,
-			"message": err.Message,
-			"data":    data,
-		})
+		c.AbortWithStatusJSON(http.StatusOK, gin.H{"code": err.ErrorCode, "message": err.ErrorString, "data": data})
 	} else {
-		c.JSON(http.StatusOK, gin.H{
-			"code":    200,
-			"message": "ok",
-			"data":    data,
-		})
+		c.AbortWithStatusJSON(http.StatusOK, gin.H{"code": 0, "message": "ok", "data": data})
 	}
+	c.Done()
 }

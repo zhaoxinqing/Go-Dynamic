@@ -1,6 +1,7 @@
 package backend
 
 import (
+	"demo/backend/handler"
 	"demo/public"
 	"demo/public/logger"
 	"fmt"
@@ -23,7 +24,7 @@ func Run(addr string) {
 
 	logger.Info("ALL MISSION SUCCESS !!!")
 
-	time.Sleep(10 * time.Second)
+	// time.Sleep(10 * time.Second)
 
 	logger.Info(fmt.Sprintf("%s, 服务已启动.", addr))
 
@@ -32,9 +33,11 @@ func Run(addr string) {
 
 func routers(app *gin.Engine) {
 
-	api := app.Group("/api")
+	api := app.Group("web-api")
 
 	api.GET("", func(c *gin.Context) {
 		c.JSON(200, gin.H{"code": 10000, "data": "ok", "message": time.Now().Format(public.TIME_FORMAT)})
 	})
+
+	api.GET("some-json", handler.SomeJson)
 }

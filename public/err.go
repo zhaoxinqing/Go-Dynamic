@@ -5,6 +5,53 @@ import (
 )
 
 const (
+	ProtocolVersionHybi13    = 13
+	ProtocolVersionHybi      = ProtocolVersionHybi13
+	SupportedProtocolVersion = "13"
+
+	ContinuationFrame = 0
+	TextFrame         = 1
+	BinaryFrame       = 2
+	CloseFrame        = 8
+	PingFrame         = 9
+	PongFrame         = 10
+	UnknownFrame      = 255
+
+	DefaultMaxPayloadBytes = 32 << 20 // 32MB
+)
+
+type ProtocolError struct {
+	ErrorString string
+	ErrorCode   int
+}
+
+var (
+	ErrBadMaskingKey         = &ProtocolError{"bad masking key", 100800}
+	ErrBadPongMessage        = &ProtocolError{"bad pong message", 100800}
+	ErrBadClosingStatus      = &ProtocolError{"bad closing status", 100800}
+	ErrUnsupportedExtensions = &ProtocolError{"unsupported extensions", 100800}
+	ErrNotImplemented        = &ProtocolError{"not implemented", 100800}
+)
+
+var (
+	ErrBadProtocolVersion   = &ProtocolError{"bad protocol version", 100800}
+	ErrBadScheme            = &ProtocolError{"bad scheme", 100800}
+	ErrBadStatus            = &ProtocolError{"bad status", 100800}
+	ErrBadUpgrade           = &ProtocolError{"missing or bad upgrade", 100800}
+	ErrBadWebSocketOrigin   = &ProtocolError{"missing or bad WebSocket-Origin", 100800}
+	ErrBadWebSocketLocation = &ProtocolError{"missing or bad WebSocket-Location", 100800}
+	ErrBadWebSocketProtocol = &ProtocolError{"missing or bad WebSocket-Protocol", 100800}
+	ErrBadWebSocketVersion  = &ProtocolError{"missing or bad WebSocket Version", 100800}
+	ErrChallengeResponse    = &ProtocolError{"mismatch challenge/response", 100800}
+	ErrBadFrame             = &ProtocolError{"bad frame", 100800}
+	ErrBadFrameBoundary     = &ProtocolError{"not on frame boundary", 100800}
+	ErrNotWebSocket         = &ProtocolError{"not websocket protocol", 100800}
+	ErrBadRequestMethod     = &ProtocolError{"bad method", 100800}
+	ErrNotSupported         = &ProtocolError{"not supported", 100800}
+	ErrBadQuery             = &ProtocolError{"bad query", 100800}
+)
+
+const (
 	UserRegistered                    = 100101 // 用户已注册
 	UserPassword                      = 100102 // 用户登录密码错误
 	UserNotRegistered                 = 100103 // 您还未注册，请先注册
