@@ -31,5 +31,4 @@ func HttpResult(c *gin.Context, data interface{}, err *ProtocolError) {
 	} else {
 		c.AbortWithStatusJSON(http.StatusOK, gin.H{"code": 0, "message": "ok", "data": data})
 	}
-	c.Done()
 }
