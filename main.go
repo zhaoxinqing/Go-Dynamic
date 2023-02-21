@@ -15,7 +15,9 @@ func main() {
 
 	Test()
 
-	backend.Run(":8000")
+	service.WaitGroup()
+
+	backend.Run(":8080")
 }
 
 func Test() {

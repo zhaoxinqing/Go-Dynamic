@@ -30,11 +30,11 @@ func Limiter(velocity int, timeUnit string) gin.HandlerFunc {
 		// 限流：时间单位-流速
 		var limit redis_rate.Limit
 		switch timeUnit {
-		case public.TIME_UNIT_HOUR:
+		case public.TIME_HOUR:
 			limit = redis_rate.PerHour(velocity) // hour
-		case public.TIME_UNIT_MINUTE:
+		case public.TIME_MINUTE:
 			limit = redis_rate.PerMinute(velocity) // minute
-		case public.TIME_UNIT_SECOND:
+		case public.TIME_SECOND:
 			limit = redis_rate.PerSecond(velocity) // second
 		}
 

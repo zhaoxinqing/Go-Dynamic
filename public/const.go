@@ -3,8 +3,9 @@ package public
 import "time"
 
 const (
-	TIME_FORMAT   = "2006-01-02 15:04:05.999999999 -0700 MST"
-	TIME_FORMAT_S = "2006-01-02 15:04:05"
+	TIME_FORMAT        = "2006-01-02 15:04:05.999999999 -0700 MST"
+	TIME_FORMAT_SECOND = "2006-01-02 15:04:05"
+	TIME_FORMAT_ZONE   = "2006-01-02 15:04:05 -0700 MST"
 )
 
 // token
@@ -21,8 +22,8 @@ func FormatTime() string {
 
 // 时间单位
 const (
-	TIME_UNIT_DAY    = "d" // 日
-	TIME_UNIT_HOUR   = "h" // 时
-	TIME_UNIT_MINUTE = "m" // 分
-	TIME_UNIT_SECOND = "s" // 秒
+	TIME_DAY    = "d" // 日
+	TIME_HOUR   = "h" // 时
+	TIME_MINUTE = "m" // 分
+	TIME_SECOND = "s" // 秒
 )

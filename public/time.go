@@ -11,18 +11,18 @@ func TimeToString(time time.Time) string {
 	if time.IsZero() {
 		return ""
 	}
-	return time.Format(TIME_FORMAT_S)
+	return time.Format(TIME_FORMAT_SECOND)
 }
 
 // StringToTime ...
 func StringToTime(timeStr string) time.Time {
-	time, _ := time.ParseInLocation(TIME_FORMAT_S, timeStr, time.UTC)
+	time, _ := time.ParseInLocation(TIME_FORMAT_SECOND, timeStr, time.UTC)
 	return time
 }
 
 // StringToUnix ...
 func StringToUnix(timeStr string) int64 {
-	time, _ := time.ParseInLocation(TIME_FORMAT_S, timeStr, time.UTC)
+	time, _ := time.ParseInLocation(TIME_FORMAT_SECOND, timeStr, time.UTC)
 	return time.Unix()
 }
 
@@ -41,10 +41,10 @@ type Time time.Time
 // MarshalJSON ...
 func (t Time) MarshalJSON() ([]byte, error) {
 
-	b := make([]byte, 0, len(TIME_FORMAT_S)+2)
+	b := make([]byte, 0, len(TIME_FORMAT_SECOND)+2)
 	b = append(b, '"')
 
-	b = time.Time(t).AppendFormat(b, TIME_FORMAT_S)
+	b = time.Time(t).AppendFormat(b, TIME_FORMAT_SECOND)
 	b = append(b, '"')
 
 	return b, nil
@@ -53,7 +53,7 @@ func (t Time) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON ...
 func (t *Time) UnmarshalJSON(data []byte) (err error) {
 
-	now, err := time.ParseInLocation(`"`+TIME_FORMAT_S+`"`, string(data), time.Local)
+	now, err := time.ParseInLocation(`"`+TIME_FORMAT_SECOND+`"`, string(data), time.Local)
 	*t = Time(now)
 
 	return
@@ -103,7 +103,7 @@ func (t Time) FormatMD() string {
 // String ...
 func (t Time) String() string {
 
-	return time.Time(t).Format(TIME_FORMAT_S)
+	return time.Time(t).Format(TIME_FORMAT_SECOND)
 
 }
 
@@ -114,17 +114,17 @@ func (t Time) StringNotNull() string {
 		return ""
 	}
 
-	return time.Time(t).Format(TIME_FORMAT_S)
+	return time.Time(t).Format(TIME_FORMAT_SECOND)
 }
 
 // StringUTC ...
 func (t Time) StringUTC() string {
 
-	return time.Time(t).UTC().Format(TIME_FORMAT_S)
+	return time.Time(t).UTC().Format(TIME_FORMAT_SECOND)
 
 }
 
 func Timex() {
-	fmt.Println(time.Now().UTC().Truncate(24 * time.Hour).Format(TIME_FORMAT_S))
-	fmt.Println(time.Now().UTC().Truncate(24 * time.Hour).Add(24 * time.Hour).Format(TIME_FORMAT_S))
+	fmt.Println(time.Now().UTC().Truncate(24 * time.Hour).Format(TIME_FORMAT_SECOND))
+	fmt.Println(time.Now().UTC().Truncate(24 * time.Hour).Add(24 * time.Hour).Format(TIME_FORMAT_SECOND))
 }

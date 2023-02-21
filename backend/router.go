@@ -36,7 +36,7 @@ func routers(app *gin.Engine) {
 	api := app.Group("web-api")
 
 	api.GET("", func(c *gin.Context) {
-		c.JSON(200, gin.H{"code": 10000, "data": "ok", "message": time.Now().Format(public.TIME_FORMAT)})
+		c.JSON(200, gin.H{"msg": time.Now().Format(public.TIME_FORMAT_ZONE)})
 	})
 
 	api.GET("some-json", handler.SomeJson)
