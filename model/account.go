@@ -6,7 +6,7 @@ import (
 
 // AccountTable 账户表
 type AccountTable struct {
-	ID        int64     `gorm:"primarykey" json:"id"`
+	ID        int64     `gorm:"primarykey" json:"account_id"`
 	Name      string    `gorm:"column:name;type:varchar(120);common:用户名" json:"name"`
 	Phone     string    `gorm:"column:phone;type:varchar(120);comment:手机号" json:"phone"`
 	PassWord  string    `gorm:"column:pass_word;type:varchar(120);comment:密码" json:"passWord"`

@@ -1,0 +1,62 @@
+# GOLANG
+
+## `GO`语言中一切都是值传递，没有引用传递。例如：
+- 向函数传递一个`int`值，就会得到`int`的副本；
+- 传递一个指针值就会得到指针的副本，但不会得到它所指挥的数据；
+- `map`和`slice`的行为类似于指针：它们是包含指向底层`map`或者`slice`数据的指针的描述符；
+- 复制一个`map`或`slice`值并不会复制它指向的数据；
+- 复制一个接口值会复制存储在接口值中的东西；
+- 如果接口值持有一个结构，复制接口值就会复制该结构。如果接口值持有一个指针，复制接口值会复制该指针，但同样不会复制它所指向的数据。
+
+> 在有指针的情况下，浅拷贝只是增加一个指针指向已存在的内存，而深拷贝就是增加一个指针并且申请一个新的内存，使这个增加的指针指向这个新的内存，采用深拷贝的情况下，释放内存的时候就不会出现在浅拷贝时重复释放同一内存的错误。
+
+## STW、三色标记、写屏障、GC的两种形式、GC历史及演进
+- CSDN：[Golang GC、三色标记、混合写屏障机制](https://blog.csdn.net/sinat_40292249/article/details/122176270) 
+- CSDN：[关键特性](https://blog.csdn.net/xiaodaoge_it/category_11461081.html)
+
+GC的两种形式：追踪式GC、引用计数式GC
+
+
+## Note
+- 静态链接，静态编译将运行时、依赖库直接打包到可执行文件内部，简化了部署和发布操作，无须事先安装运行环境和下载诸多第三方库。
+- tcmalloc，为并发而设计的高新跟那个内存分配组件，解决了高并发下的内存分配和管理的难题；
+- 最常用的语法糖，赋值符 `:=` ，其次，表示函数变参的 `...`
+- 定时器：一次性定时器，周期性定时器：Timer\Ticker
+- 反射：反射是一种检查interface变量的底层类型和值的机制；
+- map是一种hash表实现，每次遍历的顺序都可能不一样。
+
+
+## CSP & GMP
+> CSP 是 Communicating Sequential Process 的简称，中文可以叫做通信顺序进程，是一种并发编程模型。Goroutine 和 channel 是 Go 语言并发编程的 两大基石。Goroutine 用于执行并发任务，channel 用于 goroutine 之间的同步、通信。Channel 在 gouroutine 间架起了一条管道，在管道里传输数据，实现 gouroutine 间的通信；由于它是线程安全的，所以用起来非常方便；channel 还提供 “先进先出” 的特性；它还能影响 goroutine 的阻塞和唤醒。
+
+> Do not communicate by sharing memory; instead, share memory by communicating.不要通过共享内存来通信，而要通过通信来实现内存共享。
+> 这就是 Go 的并发哲学，它依赖 CSP 模型，基于 channel 实现。
+
+[GMP模型，为什么要有P](https://juejin.cn/post/6968311281220583454)
+
+M缓冲池：上面说到P的个数默认等于CPU核数，每个M必须持有一个P才可以执行G，一般情况下M的个数会略大于P的个数，这多出来的M将会在G产生系统调用时发挥作用。类似线程池，Go也提供一个M的池子，需要时从池子中获取，用完放回池子，不够用时就再创建一个。
+
+## Goroutine 调度器
+Go并发调度: G-P-M模型。在操作系统提供的内核线程之上，Go搭建了一个特有的两级线程模型。goroutine机制实现了M : N的线程模型，goroutine机制是协程（coroutine）的一种实现，golang内置的调度器，可以让多核CPU中每个CPU执行一个协程。
+![Goroutine调度原理图](../img/golang01.png)
+
+
+## 并发控制
+1. Channel: 使用channel控制子协程
+2. WaitGroup : 使用信号量机制控制子协程
+3. Context: 使用上下文控制子协程
+
+> 三种方案各有优劣，比如Channel优点是实现简单，清晰易懂，WaitGroup优点是子协程个数动态可调整，Context优点是对子协程派生出来的孙子协程的控制。缺点是相对而言的，要结合实例应用场景进行选择
+
+## 锁控制
+> 锁、sync.Mutex互斥锁、sync.RWMutex读写锁、sync.Once
+
+## 错误控制：defer & recover
+```go
+func main() {
+    defer func() {
+        recover()
+    }()
+    panic(1)
+}
+```
