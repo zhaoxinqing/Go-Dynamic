@@ -2,7 +2,7 @@ package main
 
 import (
 	"demo/app"
-	"demo/backend"
+	"demo/config"
 	"demo/public"
 	"demo/service"
 	"fmt"
@@ -13,11 +13,19 @@ import (
 
 func main() {
 
-	Test()
+	// Test()
 
-	service.WaitGroup()
+	// service.WaitGroup()
 
-	backend.Run(":8080")
+	config.LoadConf()
+
+	fmt.Printf("%+v", config.Config)
+
+	a := config.Config.Contract
+
+	fmt.Println(a)
+
+	// backend.Run(":8080")
 }
 
 func Test() {
