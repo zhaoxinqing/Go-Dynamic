@@ -1,16 +1,13 @@
 package main
 
-import (
-	"demo/backend"
-	"demo/config"
-	"demo/demo"
-)
+import "demo/demo"
 
 func main() {
+	demo.DemoString()
 
-	demo.Test()
+	// demo.Test()
 
-	config.LoadConf()
+	// config.LoadConf()
 
-	backend.Run(":8080")
+	// backend.Run(":8080")
 }
