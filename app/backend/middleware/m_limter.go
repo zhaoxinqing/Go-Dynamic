@@ -1,12 +1,13 @@
 package middleware
 
 import (
+	"backend-go/config"
+	"backend-go/public"
+	"backend-go/public/db"
 	"context"
-	"demo/backend/config"
-	"demo/public"
-	"demo/public/db"
 	"fmt"
 	"net/http"
+
 	"strings"
 
 	"github.com/gin-gonic/gin"

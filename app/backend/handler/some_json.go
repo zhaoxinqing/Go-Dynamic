@@ -1,9 +1,9 @@
 package handler
 
 import (
-	"demo/backend/logic"
-	"demo/backend/types"
-	"demo/public"
+	"backend-go/app/backend/logic"
+	"backend-go/app/backend/types"
+	"backend-go/public"
 
 	"github.com/gin-gonic/gin"
 )

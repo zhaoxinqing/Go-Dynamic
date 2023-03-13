@@ -1,7 +1,6 @@
-package app
+package service
 
 import (
-	"demo/service"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -105,7 +104,7 @@ func ZhiHuHotList() {
 	}
 	html += "</ol></body></html>"
 
-	service.SendEmail(html)
+	SendEmail(html)
 
 }
 

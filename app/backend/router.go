@@ -1,9 +1,9 @@
 package backend
 
 import (
-	"demo/backend/handler"
-	"demo/public"
-	"demo/public/logger"
+	"backend-go/app/backend/handler"
+	"backend-go/public"
+	"backend-go/public/logger"
 	"fmt"
 	"time"
 

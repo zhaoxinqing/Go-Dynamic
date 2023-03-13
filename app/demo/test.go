@@ -1,9 +1,9 @@
 package demo
 
 import (
-	"demo/app"
-	"demo/public"
-	"demo/service"
+	"backend-go/app"
+	"backend-go/public"
+	"backend-go/service"
 	"fmt"
 	"log"
 	"strings"

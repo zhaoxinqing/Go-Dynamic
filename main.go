@@ -1,6 +1,6 @@
 package main
 
-import "demo/demo"
+import "backend-go/app/demo"
 
 func main() {
 	demo.DemoString()

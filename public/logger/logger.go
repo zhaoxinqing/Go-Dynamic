@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"demo/public"
+	"backend-go/public"
 	"log"
 	"os"
 	"time"

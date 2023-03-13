@@ -1,8 +1,8 @@
 package db
 
 import (
-	"demo/backend/config"
-	"demo/public"
+	"backend-go/config"
+	"backend-go/public"
 	"fmt"
 	"log"
 	"os"
@@ -18,7 +18,7 @@ var DB *gorm.DB // mysql
 
 // InitDB ...
 func InitDB() {
-	conf := config.GetMySQLEnv()
+	conf := config.EnvInfo().MySQL
 
 	tempDb, err := gorm.Open(mysql.Open(conf.Source), &gorm.Config{
 		Logger: logger.New(

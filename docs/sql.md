@@ -1,23 +1,18 @@
+
+## 
+
+- 时区查看、设置时区；
+- 表：清空表数据、删除表、创建表；
+- 字段：新增、删除、更新属性/名称；
+- 索引：删除索引、增加索引、联合索引；
+
+
+## 查询示例
+```sql
 -- 同一个用户的不同设备id
-SELECT * FROM device 
-WHERE device_id in ('ff01b339bcf71d61de15bf5f1bc73f59','f315aad34c11a9912e6a60245b02ed26')
-
-
+SELECT * FROM device WHERE device_id in ('10010','10012')
 -- 声卡
-SELECT DISTINCT device_id,gpu_a,gpu_b,audio_a,audio_b FROM fingerprint 
-WHERE device_id in ('ff01b339bcf71d61de15bf5f1bc73f59','f315aad34c11a9912e6a60245b02ed26') 
-
-
-SELECT DISTINCT device_id, device_brand, device_model,os_type, os_version,
-IFNULL((SELECT os_type FROM config_os WHERE id=device.os_type),'') os_str,browser_type, browser_version, create_time 
-FROM device 
-WHERE device_id 
-IN ('db98ef1faa25cfcb0253429b5c92d395','1e20a723160450d67dedd54d952a07b5','a280b9ebfb62ed7e7e89cd70cbe664a6',
-'7cd0f5e9421784df214937ea3cf6b1b7','c8179db4181b531868e8a8cfe7de3428','0eb06256a2037de1ae2c2c9b62d85a58',
-'85baa0b6579ac0044d9b1ab84438fd94','e47825611a96e717c2a91653d7d7c33c','99e88370545e6c10a0e13b03e06428d4',
-'c8b8928be46c6037507b90974b4762e8','8b7480143841df14295a5c240f3009aa','213381d30e2ab984e1c104ffefc35f41',
-'87668c3112c7db1668f3cfc751fa547d','4b78badef24c01a69b52982998bfd2d3','458865056d5451df7240171db41d348f',
-'75c8356a9e14a6c87d32316598bbe1d9','2505e652fb402f6b7bd363ecc78a519b','427e66b13b6aedd23c1fb0438381ae94')
+SELECT DISTINCT device_id,gpu_a,gpu_b,audio_a,audio_b FROM fingerprint WHERE device_id IN ('1001','1001','1001','1001','1001','1001','1001','1001','1001','1001','1001','1001','1001','1001','1001','1001','1001','1001')
 
 -- 关联算法
 Select DISTINCT device_id,ip,ua_os_type,ua_os_version,ua_browser_type,ua_browser_version,gpu_a,gpu_b,audio_a,audio_b  
@@ -60,7 +55,7 @@ device_id IN ('250075910cbb32a6ae0bde807387531f','64e2f038a447a30ed5bc146e05c58e
 '55245754b48c5e733356bad4fbd050ad','99f1d5e036c35665987eb8087f2c06ef','29405f6a90666c3327b406106816f2fb','584b4992beaade8ae1004cab8a47e72e') 
 GROUP BY device_id
 
-SELECT MAX(id)id,user_id FROM `analysis_device` WHERE company_id = '5e4f18255fa6481514408ea1' GROUP BY user_id ORDER BY id DESC
+SELECT MAX(id)id, user_id FROM `analysis_device` WHERE company_id = '5e4f18255fa6481514408ea1' GROUP BY user_id ORDER BY id DESC
 
 SELECT user_id FROM `analysis_device` WHERE company_id = '5e4f18255fa6481514408ea1' ORDER BY id DESC
 
@@ -78,19 +73,10 @@ SELECT * FROM user_device WHERE id = 120006
 SELECT MAX(id)id FROM fingerprint WHERE device_id in ('46ca5125dfa1c91df4ac266011e137bd','253028ec9e51b748c0376108014db18d') AND user_id = 'a0dc74682d44690438e549828065eeb7'
 AND counts = 0 GROUP BY device_id ORDER BY id DESC
 
-SELECT * FROM fingerprint WHERE id in ('1843910','1842139')
+```
 
-1. SELECT 
-2. DISTINCT <select_list>
-3. FROM <left_table>
-4. <join_type> JOIN <right_table>
-5. ON <join_condition>
-6. WHERE <where_condition>
-7. GROUP BY <group_by_list>
-8. HAVING <having_condition>
-9. ORDER BY <order_by_condition>
-10.LIMIT <limit_number>
-
+## SQL 语法
+``` sql
 FROM
 <表名> # 选取表，将多个表数据通过笛卡尔积变成一个表。
 ON
@@ -112,8 +98,11 @@ ORDER BY
 <排序条件> # 排序
 LIMIT
 <行数限制>
+```
 
+## SELECT 
 
+```sql
 SELECT * FROM t WHERE username LIKE '%陈%'
 
 SELECT * FROM t WHERE username LIKE '陈%'
@@ -164,8 +153,66 @@ insert into T values(1,3);
 insert into T values(1,4);
 -- 方法二：
 Insert into T values(1,2),(1,3),(1,4);
+```
+
+```sql
+SELECT * FROM fingerprint WHERE id in ('1843910','1842139')
+
+1. SELECT 
+2. DISTINCT <select_list>
+3. FROM <left_table>
+4. <join_type> JOIN <right_table>
+5. ON <join_condition>
+6. WHERE <where_condition>
+7. GROUP BY <group_by_list>
+8. HAVING <having_condition>
+9. ORDER BY <order_by_condition>
+10.LIMIT <limit_number>
+```
+
+## CREATE TABLE
+
+```sql
+CREATE TABLE `abnormal_index_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `app_id` varchar(256) DEFAULT NULL,
+  `user_id` varchar(256) DEFAULT NULL,
+  `device_id` varchar(256) DEFAULT NULL,
+  `index` int(11) DEFAULT NULL,
+  `special_mark` int(11) DEFAULT NULL,
+  `score_total` int(11) DEFAULT NULL,
+  `score_location` int(11) DEFAULT NULL,
+  `score_device` int(11) DEFAULT NULL,
+  `score_time_history` int(11) DEFAULT NULL,
+  `score_device_duration` int(11) DEFAULT NULL,
+  `score_login_frequency` int(11) DEFAULT NULL,
+  `score_special_base` int(11) DEFAULT NULL,
+  `desc` varchar(256) DEFAULT NULL,
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ind_app_user` (`app_id`,`user_id`),
+  UNIQUE KEY `ind_app_device` (`app_id`,`device_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=113040 DEFAULT CHARSET=utf8mb4
+```
+
+## 排序
+```sql
+-- 排序：
+1、ORDER BY "province" ASC
+2、ORDER BY "province" DESC
+```
+
+## 删除
+DELETE FROM "t_log" WHERE "id" = '1194421845659742210';
+
+## 更新
+UPDATE "t_log" SET "create_time" = '2022-04-14 15:10:48' WHERE "id" = '1194423873890902017';
 
 
+## Others
+
+```sql
 Update t1 set time=now() where col1=1; 
 Select time from t1 where id =1; 
 
@@ -201,35 +248,4 @@ SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY ID ASC) AS rowid,*
    FROM infoTab)t WHERE t.rowid > 100000 AND t.rowid <= 100050
 
 SHOW create table abnormal_index_user
-
-CREATE TABLE `abnormal_index_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `app_id` varchar(256) DEFAULT NULL,
-  `user_id` varchar(256) DEFAULT NULL,
-  `device_id` varchar(256) DEFAULT NULL,
-  `index` int(11) DEFAULT NULL,
-  `special_mark` int(11) DEFAULT NULL,
-  `score_total` int(11) DEFAULT NULL,
-  `score_location` int(11) DEFAULT NULL,
-  `score_device` int(11) DEFAULT NULL,
-  `score_time_history` int(11) DEFAULT NULL,
-  `score_device_duration` int(11) DEFAULT NULL,
-  `score_login_frequency` int(11) DEFAULT NULL,
-  `score_special_base` int(11) DEFAULT NULL,
-  `desc` varchar(256) DEFAULT NULL,
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ind_app_user` (`app_id`,`user_id`),
-  UNIQUE KEY `ind_app_device` (`app_id`,`device_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=113040 DEFAULT CHARSET=utf8mb4
-
--- 删除：
-DELETE FROM "t_log" WHERE "id" = '1194421845659742210';
-
--- 更新：
-UPDATE "t_log" SET "create_time" = '2022-04-14 15:10:48' WHERE "id" = '1194423873890902017';
-
--- 排序：
-1、ORDER BY "province" ASC
-2、ORDER BY "province" DESC
+```

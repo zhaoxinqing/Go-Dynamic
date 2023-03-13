@@ -1,8 +1,8 @@
 package logic
 
 import (
-	"demo/backend/types"
-	"demo/public"
+	"backend-go/app/backend/types"
+	"backend-go/public"
 )
 
 func SomeJson(*types.SomeJsonQuery) (*types.SomeHandlerResp, *public.ProtocolError) {

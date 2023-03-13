@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"demo/public"
+	"backend-go/public"
 	"strings"
 	"time"
 
