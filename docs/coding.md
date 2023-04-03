@@ -102,22 +102,22 @@
 
 # 缓存
 
-1. Redis基本概念；
-2. Redis基本数据结构与常用指令；
-3. Redis；
-4. Redis八种淘汰策略与三种删除策略；
-5. Redis三种持久化机制；
-6. Redis事务机制；
-7. Redis内存模型及内存划分；
-8. Redis虚拟内存；
-9. Redis客户端通信RESP协议；
-10. Redis高可用机制：主从复制、哨兵、代理式/分片式集群；
+1.  `Redis` 基本概念；
+2.  `Redis` 基本数据结构与常用指令；
+3.  `Redis` ；
+4.  `Redis` 八种淘汰策略与三种删除策略；
+5.  `Redis` 三种持久化机制；
+6.  `Redis` 事务机制；
+7.  `Redis` 内存模型及内存划分；
+8.  `Redis` 虚拟内存；
+9.  `Redis` 客户端通信RESP协议；
+10.  `Redis` 高可用机制：主从复制、哨兵、代理式/分片式集群；
 
-> Redis面试宝典：<https://baijiahao.baidu.com/s>
+>  `Redis` 面试宝典：<https://baijiahao.baidu.com/s>
 > 数据结构和命令：<https://blog.csdn.net/m0_64830623/article/details/123145942>
-> Redis五大数据类型及使用场景：<https://baijiahao.baidu.com/s?id=1682379171066196544&wfr=spider&for=pc>
-> Redis核心底层协议-RESP：<https://baijiahao.baidu.com/s?id=1669496265525774478&wfr=spider&for=pc>
-> 网址：<https://xiaolincoding.com/redis/>
+>  `Redis` 五大数据类型及使用场景：<https://baijiahao.baidu.com/s?id=1682379171066196544&wfr=spider&for=pc>
+>  `Redis` 核心底层协议-RESP：<https://baijiahao.baidu.com/s?id=1669496265525774478&wfr=spider&for=pc>
+> 网址：<https://xiaolincoding.com/ `redis` />
 
 - 缓存
   1. 提高系统的性能，尽量减少IO的操作，特别是磁盘IO的操作；
@@ -129,7 +129,7 @@
 
 1. 避免单点故障
 
-- 负载均衡技术（failover、选址、硬件负载、软件负载、去中心化负载（gossip（redis-cluster））
+- 负载均衡技术（failover、选址、硬件负载、软件负载、去中心化负载（gossip（ `redis` -cluster））
 - 热备Linux HA
 - 多机房（同城灾备，异地灾备）
 
@@ -150,10 +150,10 @@
 # 项目开发
 
 - 基础
-  - 数据：MySQL、SQL、Redis
+  - 数据：MySQL、SQL、 `Redis` 
   - 环境：Linux、Windows、Vscode
   - 测试：功能测试、性能测试、安全测试、严谨性
-  - 部署维护：Nginx
+  - 部署维护：`Nginx`
   - 开发规范：项目规范、编码规范、测试规范。（软件工程）
   - 系统问题排查：CPU、内存、网络、数据库瓶颈
   - 超卖问题解决思路
@@ -161,7 +161,7 @@
   - 大型分布式系统架构设计和调优。分布式系统架构设计：<https://zhuanlan.zhihu.com/p/159745617>
   - 分布式架构的基本理论：CAP，BASE
   - 设计模式
-  - Nginx及负载均衡
+  - `Nginx`及负载均衡
   - 设计一个秒杀系统。链接：<https://zhuanlan.zhihu.com/p/558395137>
   - 成员查询问题 ，Bloom Filter
   - Top k频繁项
@@ -172,7 +172,7 @@
   - 微服务
   - SOA架构：面向服务的架构（Service Oriented Architecture）它是一种设计方法，其中包含多个服务， 服务之间通过相互依赖最终提供一系列的功能；
   - ESB（企业服务总线）、微服务API网关
-  - Nginx（一个集静态资源、负载均衡于一身的Web服务器）
+  - `Nginx`（一个集静态资源、负载均衡于一身的Web服务器）
   - 解释型语言、编译型语言
     - 编译型语言相对性能好一点，解释型语言跨平台性好一点；
     - 编译性语言例如c语言：用c语言开发了程序后，需要通过编译器把程序编译成机器语言（即计算机识别的二进制文件，因为不同的操作系统计算机识别的二进制文件是不同的），所以c语言程序进行移植后，要重新编译。（如windows编译成ext文件，linux编译成erp文件）。
@@ -190,9 +190,9 @@
   - CAP原则：一致性、可用性、分区容忍性（只能满足两个）；
   - 分布式一致性协议raft，两大核心：选主和复制日志；
   - 一致性哈希算法，保证负载均衡，可添加虚拟节点；
-  - 大型网站系统架构：用户-负载均衡器-N台服务器-redis缓存集群-mysql集群
+  - 大型网站系统架构：用户-负载均衡器-N台服务器- `redis` 缓存集群-mysql集群
     - 前端限流（例如一个用户10秒内只能点击一次，异步处理，消息队列）；
-    - 负载均衡一般采用NGINX反向代理；
+    - 负载均衡一般采用`NGINX`反向代理；
     - mysql读写分离，主库写，从库读，分库分表。
   - 分布式锁ZooKeeper：在分布式系统中，常常需要协调他们的动作。如果不同的系统或是同一个系统的不同主机之间共享了一个或一组资源，那么访问这些资源的时候，往往需要互斥来防止彼此干扰来保证一致性，在这种情况下，便需要使用到分布式锁。
   - 云服务：Docker
@@ -267,17 +267,14 @@
   > Linux自学资源：<https://github.com/0voice/linux_kernel_wiki>
   > Linux 常用命令：<https://www.runoob.com/linux/linux-command-manual.html>
 
-## 都是事件驱动，为什么Nginx的性能远高于Redis？
+# 事件驱动：`Nginx` VS `Redis`
 
-谈到Redis缓存，我们描述其性能时会这么说：支持1万并发连接，几万QPS。而我们描述Nginx的高性能时，则会宣示：支持C10M（1千万并发连接），百万级QPS。Nginx用C语言开发，而Redis是用同一家族的C++语言开发的，C与C++在性能上是同一级数的。Redis与Nginx同样使用了事件驱动、异步调用、Epoll这些机制，为什么Nginx的并发连接会高出那么多呢？
+谈到 Redis 缓存，我们描述其性能时会这么说：支持1万并发连接，几万QPS。而我们描述`Nginx`的高性能时，则会宣示：支持C10M（1千万并发连接），百万级QPS。`Nginx`用C语言开发，而 Redis 是用同一家族的C++语言开发的，C与C++在性能上是同一级数的。 Redis与 `Nginx` 同样使用了事件驱动、异步调用、Epoll这些机制，为什么`Nginx`的并发连接会高出那么多呢？这其实是由**进程架构**决定的。为了让进程占用CPU的全部计算力，`Nginx`充分利用了分时操作系统的特点，比如增加CPU时间片、提高CPU二级缓存命中率、用异步IO和线程池的方式回避磁盘的阻塞读操作等等，只有清楚了`Nginx`的这些招数，你才能将`Nginx`的性能最大化发挥出来。材料、散热这些基础科技没有获得重大突破前，CPU频率很难增长，类似 `Redis` 、NodeJS这样的单进程、单线程高并发服务，只能向分布式集群方向发展，才能继续提升性能。`Nginx`通过Master/Worker多进程架构，可以充分使用服务器上百个CPU核心，实现C10M。为了榨干多核CPU的价值，`Nginx`无所不用其极：通过绑定CPU提升二级缓存的命中率，通过静态优先级扩大时间片，通过多种手段均衡Worker进程之间的负载，在独立线程池中隔离阻塞的IO操作，等等。可见，高性能既来自于架构，更来自于细节。
 
-这其实是由**进程架构**决定的。为了让进程占用CPU的全部计算力，Nginx充分利用了分时操作系统的特点，比如增加CPU时间片、提高CPU二级缓存命中率、用异步IO和线程池的方式回避磁盘的阻塞读操作等等，只有清楚了Nginx的这些招数，你才能将Nginx的性能最大化发挥出来。
+## 事件驱动 | 异步调用 | `Epoll`
 
-材料、散热这些基础科技没有获得重大突破前，CPU频率很难增长，类似Redis、NodeJS这样的单进程、单线程高并发服务，只能向分布式集群方向发展，才能继续提升性能。Nginx通过Master/Worker多进程架构，可以充分使用服务器上百个CPU核心，实现C10M。
 
-为了榨干多核CPU的价值，Nginx无所不用其极：通过绑定CPU提升二级缓存的命中率，通过静态优先级扩大时间片，通过多种手段均衡Worker进程之间的负载，在独立线程池中隔离阻塞的IO操作，等等。可见，高性能既来自于架构，更来自于细节。
-
-## Etcd-服务发现
+# Etcd-服务发现
 
 [etcd](https://etcd.io/)（读作 et-see-dee）是一种[开源的](https://www.redhat.com/zh/topics/open-source/what-is-open-source)分布式统一键值存储，用于分布式系统或计算机集群的共享配置、服务发现和的调度协调。etcd 有助于促进更加安全的自动更新，协调向主机调度的工作，并帮助设置[容器](https://www.redhat.com/zh/topics/containers/whats-a-linux-container)的覆盖网络。
 
@@ -285,7 +282,7 @@ etcd 是许多其他项目的核心组件。最值得注意的是，它是 [Kube
 
 服务发现（Service discovery）是自动检测一个[计算机网络](https://zh.wikipedia.org/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C "计算机网络")内的设备及其提供的服务。服务发现议定(service discovery protocol)帮助发现服务的[网络传输协议](https://zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE "网络传输协议")。服务发现的目的在于为用户自行配置而减负。服务发现通常需要一个共同的语言, 帮助用户通过软件代理器（software agents）调用另一个服务, 而不需要用户自行调用。
 
-## 白盒测试、黑盒测试
+# 白盒测试、黑盒测试
 
 - 白盒测试：也称为结构测试，主要用于检测软件编码过程中的错误。程序员的编程经验、对编程软件的掌握程度、工作状态等因素都会影响到编程质量，导致代码错误。
 - 黑盒测试：又称为功能测试，主要检测软件的每一个功能是否能够正常使用。在测试过程中，将程序看成不能打开的黑盒子，不考虑程序内部结构和特性的基础上通过程序接口进行测试，检查程序功能是否按照设计需求以及说明书的规定能够正常打开使用。
@@ -330,7 +327,7 @@ etcd 是许多其他项目的核心组件。最值得注意的是，它是 [Kube
 
   - 链接：<https://cloud.tencent.com/developer/article/1404952>
 
-## Web性能优化
+# Web性能优化
 
 1、DNS查询优化
 2、客户端缓存

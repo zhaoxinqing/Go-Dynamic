@@ -20,3 +20,7 @@ echo '$3 = ' $3
 date
 
 ```
+
+# 交叉编译
+
+go env -w GOOS=windows
