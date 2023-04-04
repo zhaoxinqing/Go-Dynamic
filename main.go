@@ -1,23 +1,26 @@
 package main
 
 import (
-	"backend-go/app/demo"
+	"backend-go/service"
 	"fmt"
 )
 
 func main() {
+	// RunRandomFile()
+	RunRandomInt()
+}
 
-	var a, b uint64
-	a = 4
-	b = 10
+// RunRandomFile ... 抽文件
+func RunRandomFile() {
+	str, err := service.RandomFile("./docs")
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	fmt.Println(str)
+}
 
-	c := a - b
-	fmt.Println(c)
-	demo.DemoString()
-
-	// demo.Test()
-
-	// config.LoadConf()
-
-	// backend.Run(":8080")
+// RunRandomFile ... 抽数字
+func RunRandomInt() {
+	num := service.RandomInt(10000)
+	fmt.Println(num)
 }
