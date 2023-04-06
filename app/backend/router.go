@@ -3,8 +3,6 @@ package backend
 import (
 	"backend-go/app/backend/handler"
 	"backend-go/public"
-	"backend-go/public/logger"
-	"fmt"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -20,13 +18,7 @@ func Run(addr string) {
 
 	routers(engine) // 路由注册
 
-	logger := logger.NewMyLogger()
-
-	logger.Info("ALL MISSION SUCCESS !!!")
-
 	// time.Sleep(10 * time.Second)
-
-	logger.Info(fmt.Sprintf("%s, 服务已启动.", addr))
 
 	engine.Run(addr)
 }

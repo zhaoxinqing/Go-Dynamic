@@ -1,11 +1,14 @@
 package main
 
 import (
+	"backend-go/public/logger"
 	"backend-go/service"
 	"fmt"
 )
 
 func main() {
+
+	logger.NewLogger(logger.LogOptions("./log")) // logger
 	// RunRandomFile()
 	RunRandomInt()
 }
