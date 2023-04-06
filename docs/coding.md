@@ -67,8 +67,6 @@
   - [值类型、引用类型](https://www.jb51.net/article/182727.htm)
   - [空struct{}的用途](https://blog.csdn.net/weixin_44328662/article/details/86501900)
 
-
-
 # 数据库
 
 - 重要概念：
@@ -102,22 +100,22 @@
 
 # 缓存
 
-1.  `Redis` 基本概念；
-2.  `Redis` 基本数据结构与常用指令；
-3.  `Redis` ；
-4.  `Redis` 八种淘汰策略与三种删除策略；
-5.  `Redis` 三种持久化机制；
-6.  `Redis` 事务机制；
-7.  `Redis` 内存模型及内存划分；
-8.  `Redis` 虚拟内存；
-9.  `Redis` 客户端通信RESP协议；
-10.  `Redis` 高可用机制：主从复制、哨兵、代理式/分片式集群；
+1. `Redis` 基本概念；
+2. `Redis` 基本数据结构与常用指令；
+3. `Redis` ；
+4. `Redis` 八种淘汰策略与三种删除策略；
+5. `Redis` 三种持久化机制；
+6. `Redis` 事务机制；
+7. `Redis` 内存模型及内存划分；
+8. `Redis` 虚拟内存；
+9. `Redis` 客户端通信RESP协议；
+10. `Redis` 高可用机制：主从复制、哨兵、代理式/分片式集群；
 
->  `Redis` 面试宝典：<https://baijiahao.baidu.com/s>
+> `Redis` 面试宝典：<https://baijiahao.baidu.com/s>
 > 数据结构和命令：<https://blog.csdn.net/m0_64830623/article/details/123145942>
->  `Redis` 五大数据类型及使用场景：<https://baijiahao.baidu.com/s?id=1682379171066196544&wfr=spider&for=pc>
->  `Redis` 核心底层协议-RESP：<https://baijiahao.baidu.com/s?id=1669496265525774478&wfr=spider&for=pc>
-> 网址：<https://xiaolincoding.com/ `redis` />
+> `Redis` 五大数据类型及使用场景：<https://baijiahao.baidu.com/s?id=1682379171066196544&wfr=spider&for=pc>
+> `Redis` 核心底层协议-RESP：<https://baijiahao.baidu.com/s?id=1669496265525774478&wfr=spider&for=pc>
+> 网址：<<https://xiaolincoding.com/> `redis` />
 
 - 缓存
   1. 提高系统的性能，尽量减少IO的操作，特别是磁盘IO的操作；
@@ -150,7 +148,7 @@
 # 项目开发
 
 - 基础
-  - 数据：MySQL、SQL、 `Redis` 
+  - 数据：MySQL、SQL、 `Redis`
   - 环境：Linux、Windows、Vscode
   - 测试：功能测试、性能测试、安全测试、严谨性
   - 部署维护：`Nginx`
@@ -272,7 +270,6 @@
 谈到 Redis 缓存，我们描述其性能时会这么说：支持1万并发连接，几万QPS。而我们描述`Nginx`的高性能时，则会宣示：支持C10M（1千万并发连接），百万级QPS。`Nginx`用C语言开发，而 Redis 是用同一家族的C++语言开发的，C与C++在性能上是同一级数的。 Redis与 `Nginx` 同样使用了事件驱动、异步调用、Epoll这些机制，为什么`Nginx`的并发连接会高出那么多呢？这其实是由**进程架构**决定的。为了让进程占用CPU的全部计算力，`Nginx`充分利用了分时操作系统的特点，比如增加CPU时间片、提高CPU二级缓存命中率、用异步IO和线程池的方式回避磁盘的阻塞读操作等等，只有清楚了`Nginx`的这些招数，你才能将`Nginx`的性能最大化发挥出来。材料、散热这些基础科技没有获得重大突破前，CPU频率很难增长，类似 `Redis` 、NodeJS这样的单进程、单线程高并发服务，只能向分布式集群方向发展，才能继续提升性能。`Nginx`通过Master/Worker多进程架构，可以充分使用服务器上百个CPU核心，实现C10M。为了榨干多核CPU的价值，`Nginx`无所不用其极：通过绑定CPU提升二级缓存的命中率，通过静态优先级扩大时间片，通过多种手段均衡Worker进程之间的负载，在独立线程池中隔离阻塞的IO操作，等等。可见，高性能既来自于架构，更来自于细节。
 
 ## 事件驱动 | 异步调用 | `Epoll`
-
 
 # Etcd-服务发现
 

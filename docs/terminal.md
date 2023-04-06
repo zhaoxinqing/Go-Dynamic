@@ -1,6 +1,6 @@
-# 
 
-## 
+# A
+
 ```sh
 #!/bin/bash
 
@@ -16,11 +16,15 @@ echo '$3 = ' $3
 ```
 
 ## date\time
+
 ```sh
 date
 
 ```
 
-# 交叉编译
+## 交叉编译
 
 go env -w GOOS=windows
+
+set http_proxy=<http://127.0.0.1:7890>
+set https_proxy=<http://127.0.0.1:7890>

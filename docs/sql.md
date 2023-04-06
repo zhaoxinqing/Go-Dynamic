@@ -1,13 +1,13 @@
 
-## 
+# AA
 
 - 时区查看、设置时区；
 - 表：清空表数据、删除表、创建表；
 - 字段：新增、删除、更新属性/名称；
 - 索引：删除索引、增加索引、联合索引；
 
-
 ## 查询示例
+
 ```sql
 -- 同一个用户的不同设备id
 SELECT * FROM device WHERE device_id in ('10010','10012')
@@ -64,7 +64,7 @@ SELECT user_id FROM `analysis_device` WHERE company_id = '5e4f18255fa6481514408e
 -- 关联分析
 SELECT * FROM `user_device_group_copy1` WHERE correlation_device_id != linked_id
 
--- 1442641	120006	46ca5125dfa1c91df4ac266011e137bd	253028ec9e51b748c0376108014db18d	2022-07-12 15:07:43	2022-07-12 15:07:43
+-- 1442641 120006 46ca5125dfa1c91df4ac266011e137bd 253028ec9e51b748c0376108014db18d 2022-07-12 15:07:43 2022-07-12 15:07:43
 
 SELECT * FROM user_device WHERE id = 120006
 
@@ -76,6 +76,7 @@ AND counts = 0 GROUP BY device_id ORDER BY id DESC
 ```
 
 ## SQL 语法
+
 ``` sql
 FROM
 <表名> # 选取表，将多个表数据通过笛卡尔积变成一个表。
@@ -100,7 +101,7 @@ LIMIT
 <行数限制>
 ```
 
-## SELECT 
+## SELECT
 
 ```sql
 SELECT * FROM t WHERE username LIKE '%陈%'
@@ -197,6 +198,7 @@ CREATE TABLE `abnormal_index_user` (
 ```
 
 ## 排序
+
 ```sql
 -- 排序：
 1、ORDER BY "province" ASC
@@ -204,11 +206,12 @@ CREATE TABLE `abnormal_index_user` (
 ```
 
 ## 删除
+
 DELETE FROM "t_log" WHERE "id" = '1194421845659742210';
 
 ## 更新
-UPDATE "t_log" SET "create_time" = '2022-04-14 15:10:48' WHERE "id" = '1194423873890902017';
 
+UPDATE "t_log" SET "create_time" = '2022-04-14 15:10:48' WHERE "id" = '1194423873890902017';
 
 ## Others
 
