@@ -24,6 +24,7 @@ date
 
 ## 交叉编译
 
+```sh
 go env -w GOOS=windows
 
 set http_proxy=<http://127.0.0.1:7890>
@@ -31,3 +32,4 @@ set https_proxy=<http://127.0.0.1:7890>
 
 go env -w GO111MODULE=on
 go env -w GOPROXY=<https://goproxy.cn>
+```

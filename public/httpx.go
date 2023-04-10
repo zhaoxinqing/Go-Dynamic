@@ -1,49 +1,43 @@
 package public
 
 import (
-	"bytes"
+	"encoding/json"
+	"fmt"
 	"net/http"
+	"strconv"
 )
 
-// Get 发送 GET 请求
-func HttpGet(url string) (*http.Response, error) {
-	// 创建 HTTP 客户端
-	client := &http.Client{}
-
-	// 创建 HTTP 请求
-	req, err := http.NewRequest("GET", url, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	// 发送 HTTP 请求
-	resp, err := client.Do(req)
-	if err != nil {
-		return nil, err
-	}
-
-	return resp, nil
+type Price struct {
+	Symbol string `json:"symbol"`
+	Price  string `json:"price"`
 }
 
-// Post 发送 POST 请求
-func HttpPost(url string, body []byte) (*http.Response, error) {
-	// 创建 HTTP 客户端
-	client := &http.Client{}
+func GetBinancePrice(currency string) (float64, error) {
+	var url = "https://api.binance.com/api/v3/ticker/price?symbol=%s"
 
-	// 创建请求体
-	reqBody := bytes.NewBuffer(body)
-
-	// 创建 HTTP 请求
-	req, err := http.NewRequest("POST", url, reqBody)
-	if err != nil {
-		return nil, err
+	switch currency {
+	case "ETH":
+		url = fmt.Sprintf(url, "ETHUSDT")
+	case "BNB":
+		url = fmt.Sprintf(url, "BNBUSDT")
 	}
 
-	// 发送 HTTP 请求
-	resp, err := client.Do(req)
+	resp, err := http.Get(url)
 	if err != nil {
-		return nil, err
+		return 0, err
+	}
+	defer resp.Body.Close()
+
+	var price Price
+	err = json.NewDecoder(resp.Body).Decode(&price)
+	if err != nil {
+		return 0, err
 	}
 
-	return resp, nil
+	priceFloat, err := strconv.ParseFloat(price.Price, 64)
+	if err != nil {
+		return 0, err
+	}
+
+	return priceFloat, nil
 }
