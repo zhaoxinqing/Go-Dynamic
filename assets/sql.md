@@ -50,3 +50,7 @@ WHERE scores.subject = 'Math';
 
 - MVCC 多版本并发控制
 在使用 `READ COMMITTD`、`REPEATABLE READ` 这两种隔离级别的事务在执行普通的 `SELECT` 操作时访问记录的 `版本链` 的过程，这样子可以使不同事务的 `读-写`、`写-读` 操作 `并发执行`，从而 `提高系统性能`。
+
+- 按日计统计
+
+> SELECT DATE_FORMAT(created_at,'%Y-%m-%d') time,SUM(id)FROM user WHERE id>10 GROUP BY time
