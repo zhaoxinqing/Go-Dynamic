@@ -10,6 +10,31 @@ import (
 
 var config *EnvConf
 
+type AliYun struct {
+	AccessKeyID  string    `yaml:"access_key" mapstructure:"access_key"`
+	AccessSecret string    `yaml:"access_secret" mapstructure:"access_secret"`
+	OSS          AliYunOSS `yaml:"oss" mapstructure:"oss"`
+	SMS          AliYunSMS `yaml:"sms" mapstructure:"sms"`
+	Afs          AliYunAfs `yaml:"afs" mapstructure:"afs"`
+}
+
+// AliYunOSS  ...
+type AliYunOSS struct {
+	Endpoint string `yaml:"endpoint" mapstructure:"endpoint"`
+	Bucket   string `yaml:"bucket" mapstructure:"bucket"`
+	OssUrl   string `yaml:"oss_url" mapstructure:"oss_url"`
+}
+
+// AliYunSMS ...
+type AliYunSMS struct {
+	SignName string `yaml:"sign_name" mapstructure:"sign_name"`
+	Template string `yaml:"template" mapstructure:"template"`
+}
+
+type AliYunAfs struct {
+	AppKey string `yaml:"app_key" mapstructure:"app_key"`
+	Scene  string `yaml:"scene" mapstructure:"scene"`
+}
 type EnvConf struct {
 	MySQL  MySQL  `yaml:"MySQL" mapstructure:"MySQL"`
 	Redis  Redis  `yaml:"Redis" mapstructure:"Redis"`
