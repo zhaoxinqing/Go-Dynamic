@@ -2,8 +2,8 @@ package middleware
 
 import (
 	"backend-go/config"
+	"backend-go/pkg/db"
 	"backend-go/public"
-	"backend-go/public/db"
 	"context"
 	"fmt"
 	"net/http"
