@@ -14,6 +14,18 @@ import (
 )
 
 func main() {
+	// 将全局时区设置为
+	loc, err := time.LoadLocation("Asia/Tokyo")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	time.Local = loc
+
+	fmt.Println("当前时间(Asia/Tokyo):", time.Now().Format("2006-01-02 15:04:05"))
+}
+
+func Main2() {
 
 	GetRememberWordsFromTerminal()
 
